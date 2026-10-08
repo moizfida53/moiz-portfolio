@@ -1,0 +1,76 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.pf-icon-btn {
+  display: grid; place-items: center;
+  width: 2.75rem; height: 2.75rem;
+  border: 1px solid var(--pf-line); border-radius: .5rem;
+  background: var(--pf-surface); color: var(--pf-ink);
+  font-size: 1.1rem; cursor: pointer;
+  transition: border-color .2s ease, color .2s ease;
+  &:hover { border-color: var(--pf-ink); }
+}
+
+.pf-nav {
+  position: sticky; top: 0; z-index: 1030;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+
+  &--scrolled {
+    background: color-mix(in srgb, var(--pf-ground) 86%, transparent);
+    border-bottom-color: var(--pf-line);
+    backdrop-filter: saturate(1.4) blur(10px);
+  }
+
+  &__bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    min-height: 4.25rem;
+  }
+
+  &__brand {
+    display: inline-flex; align-items: center; gap: .65rem;
+    color: var(--pf-ink); text-decoration: none !important;
+    font-family: $pf-font-display; font-weight: 700;
+  }
+
+  &__mono {
+    display: grid; place-items: center;
+    width: 2.25rem; height: 2.25rem; border-radius: .5rem;
+    background: var(--pf-ink); color: var(--pf-ground);
+    font-family: $pf-font-mono; font-size: .8rem; letter-spacing: .04em;
+  }
+
+  &__name { font-size: 1.05rem; @include down(sm) { display: none; } }
+
+  &__links {
+    display: flex; align-items: center; gap: .25rem;
+    margin: 0; padding: 0; list-style: none;
+
+    a:not(.btn) {
+      display: block; padding: .5rem .8rem; border-radius: .4rem;
+      color: var(--pf-muted); font-weight: 500; font-size: .95rem; text-decoration: none;
+      &:hover { color: var(--pf-ink); background: var(--pf-accent-soft); }
+    }
+
+    @include down(lg) {
+      position: absolute; inset: 100% 0 auto 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      padding: .75rem 1rem 1.25rem;
+      background: var(--pf-ground); border-bottom: 1px solid var(--pf-line);
+      box-shadow: var(--pf-shadow);
+      visibility: hidden; opacity: 0; transform: translateY(-6px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s;
+
+      &.is-open { visibility: visible; opacity: 1; transform: none; }
+      a:not(.btn) { padding: .85rem .5rem; font-size: 1.05rem; border-bottom: 1px solid var(--pf-line); border-radius: 0; }
+    }
+  }
+
+  &__cta-mobile { display: none; padding-top: 1rem; @include down(lg) { display: block; } }
+
+  &__actions { display: flex; align-items: center; gap: .5rem; }
+  &__cta { @include down(lg) { display: none; } }
+  &__toggle { @include up(lg) { display: none; } }
+}
+

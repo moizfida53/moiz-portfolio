@@ -1,0 +1,33 @@
+// ─── Design tokens (Sass) ────────────────────────────────────────────
+// Bootstrap is compiled from source so these flow into every component.
+
+$pf-ink:      #141414;
+$pf-ground:   #f7f7f4;
+$pf-surface:  #ffffff;
+$pf-muted:    #4a4f57;
+$pf-line:     #dcdcd6;
+$pf-accent:   #2f5bd3;
+$pf-accent-d: #1e3f9e;
+
+$pf-font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+$pf-font-body:    'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+$pf-font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+// Bootstrap overrides
+$primary:              $pf-accent;
+$body-color:           $pf-ink;
+$body-bg:              $pf-ground;
+$font-family-sans-serif: $pf-font-body;
+$font-family-monospace:  $pf-font-mono;
+$headings-font-family: $pf-font-display;
+$headings-font-weight: 700;
+$border-radius:        .5rem;
+$border-radius-lg:     .75rem;
+$border-color:         $pf-line;
+$enable-shadows:       false;
+$link-decoration:      none;
+$link-hover-decoration: underline;
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px, xxl: 1200px);
+
+// Breakpoint shorthands used by the mixins below
+$pf-breakpoints: (sm: 576px, md: 768px, lg: 992px, xl: 1200px);

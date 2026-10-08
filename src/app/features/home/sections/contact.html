@@ -1,0 +1,51 @@
+<section id="contact" class="pf-section" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="pf-contact" pfReveal>
+      <div class="pf-contact__intro">
+        <p class="pf-eyebrow">Contact</p>
+        <h2 id="contact-title" class="pf-contact__title">Let’s build something reliable.</h2>
+        <p class="pf-lead">
+          I’m open to full-stack .NET and Angular roles in Kuwait, on-site or hybrid.
+          The quickest way to reach me is email or phone.
+        </p>
+        <div class="pf-contact__actions">
+          <a class="btn btn-pf" [href]="'mailto:' + profile.email">
+            <i class="bi bi-envelope me-2" aria-hidden="true"></i>Email me
+          </a>
+          <button type="button" class="btn btn-pf-outline" (click)="copyEmail()">
+            <i class="bi me-2" [class.bi-clipboard]="!copied()" [class.bi-clipboard-check]="copied()" aria-hidden="true"></i>
+            {{ copied() ? 'Copied!' : 'Copy email' }}
+          </button>
+        </div>
+        <p class="visually-hidden" aria-live="polite">{{ copied() ? 'Email address copied' : '' }}</p>
+      </div>
+
+      <ul class="pf-contact__list">
+        <li>
+          <a [href]="'mailto:' + profile.email">
+            <span class="pf-contact__icon"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+            <span><span class="pf-contact__label">Email</span>{{ profile.email }}</span>
+          </a>
+        </li>
+        <li>
+          <a [href]="'tel:' + profile.phoneHref">
+            <span class="pf-contact__icon"><i class="bi bi-telephone" aria-hidden="true"></i></span>
+            <span><span class="pf-contact__label">Phone</span>{{ profile.phone }}</span>
+          </a>
+        </li>
+        <li>
+          <a [href]="profile.linkedin" target="_blank" rel="noopener">
+            <span class="pf-contact__icon"><i class="bi bi-linkedin" aria-hidden="true"></i></span>
+            <span><span class="pf-contact__label">LinkedIn</span>in/moiz-dudhbhai</span>
+          </a>
+        </li>
+        <li>
+          <a [href]="profile.github" target="_blank" rel="noopener">
+            <span class="pf-contact__icon"><i class="bi bi-github" aria-hidden="true"></i></span>
+            <span><span class="pf-contact__label">GitHub</span>github.com/moizfida53</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,101 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.pf-hero {
+  position: relative; overflow: hidden;
+  padding-block: 3.5rem 3rem;
+  @include up(lg) { padding-block: 6rem 4.5rem; }
+
+  &__grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--pf-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--pf-grid) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, #000 40%, transparent);
+  }
+
+  &__title {
+    @include fluid-type(2.75rem, "1.6rem + 5vw", 5.25rem);
+    font-weight: 700; line-height: .95; letter-spacing: -.035em;
+    margin-bottom: 1.25rem;
+  }
+
+  &__tagline {
+    @include fluid-type(1.1rem, "1rem + .5vw", 1.35rem);
+    color: var(--pf-muted); max-width: 36rem; line-height: 1.55; margin-bottom: 1.5rem;
+  }
+
+  &__status {
+    display: inline-flex; align-items: center; gap: .6rem;
+    padding: .45rem .9rem; margin-bottom: 1.75rem;
+    font-size: .9rem; color: var(--pf-ink);
+    border: 1px solid var(--pf-line); border-radius: 2rem; background: var(--pf-surface);
+  }
+
+  &__dot {
+    width: .55rem; height: .55rem; border-radius: 50%;
+    background: #1f9d55; box-shadow: 0 0 0 4px rgba(31, 157, 85, .18);
+  }
+
+  &__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 2rem; }
+
+  &__social {
+    display: flex; flex-wrap: wrap; gap: .25rem 1.25rem;
+    margin: 0; padding: 0; list-style: none;
+
+    a {
+      display: inline-flex; align-items: center; gap: .45rem;
+      min-height: 2.75rem;
+      color: var(--pf-muted); font-size: .92rem; text-decoration: none;
+      &:hover { color: var(--pf-ink); }
+      @include down(sm) { word-break: break-all; }
+    }
+  }
+
+  &__visual {
+    display: flex; flex-direction: column; align-items: center; gap: 1.75rem;
+    @include up(lg) { align-items: flex-end; }
+  }
+
+  &__photo {
+    width: 9.5rem; height: 9.5rem; border-radius: 50%; object-fit: cover;
+    border: 4px solid var(--pf-surface);
+    box-shadow: 0 0 0 1px var(--pf-line), var(--pf-shadow);
+    @include up(lg) { width: 12.25rem; height: 12.25rem; align-self: center; }
+  }
+}
+
+// Layer diagram — echoes the LinkedIn banner
+.pf-stack {
+  width: 100%; max-width: 22rem;
+  margin: 0; padding: 0; list-style: none;
+  font-family: $pf-font-mono;
+
+  &__layer {
+    display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: .75rem;
+    padding: .85rem 1rem;
+    @include card-surface;
+    box-shadow: var(--pf-shadow);
+
+    &--accent { border-color: var(--pf-accent); }
+  }
+
+  &__n { font-size: .72rem; color: var(--pf-muted); }
+  &__label { font-weight: 600; font-size: .9rem; color: var(--pf-ink); }
+  &__tech { justify-self: end; font-size: .78rem; color: var(--pf-muted); text-align: right; }
+
+  &__link { width: 2px; height: 1.1rem; margin-inline: auto; background: var(--pf-accent); }
+}
+
+.pf-facts {
+  display: grid; gap: 1rem; margin: 3.5rem 0 0;
+  grid-template-columns: 1fr;
+  @include up(md) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  &__item {
+    padding: 1.1rem 1.25rem; border-top: 2px solid var(--pf-ink);
+    dt { font-family: $pf-font-display; font-size: 1.75rem; line-height: 1; margin-bottom: .4rem; }
+    dd { margin: 0; color: var(--pf-muted); font-size: .92rem; }
+  }
+}

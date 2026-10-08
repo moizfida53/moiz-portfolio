@@ -1,0 +1,40 @@
+<header class="pf-nav" [class.pf-nav--scrolled]="scrolled() || menuOpen()">
+  <nav class="container pf-nav__bar" aria-label="Primary">
+    <a class="pf-nav__brand" routerLink="/" (click)="closeMenu()" aria-label="Moiz Dudhbhai — home">
+      <span class="pf-nav__mono" aria-hidden="true">MD</span>
+      <span class="pf-nav__name">{{ profile.name }}</span>
+    </a>
+
+    <ul class="pf-nav__links" [class.is-open]="menuOpen()" id="pf-menu">
+      @for (link of links; track link.fragment) {
+        <li>
+          <a routerLink="/" [fragment]="link.fragment" (click)="closeMenu()">{{ link.label }}</a>
+        </li>
+      }
+      <li class="pf-nav__cta-mobile">
+        <a class="btn btn-pf w-100" [href]="'mailto:' + profile.email">Email me</a>
+      </li>
+    </ul>
+
+    <div class="pf-nav__actions">
+      <button
+        type="button"
+        class="pf-icon-btn"
+        (click)="theme.toggle()"
+        [attr.aria-label]="theme.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [attr.aria-pressed]="theme.isDark()">
+        <i class="bi" [class.bi-sun]="theme.isDark()" [class.bi-moon-stars]="!theme.isDark()" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-pf btn-sm pf-nav__cta" [href]="'mailto:' + profile.email">Email me</a>
+      <button
+        type="button"
+        class="pf-icon-btn pf-nav__toggle"
+        (click)="toggleMenu()"
+        aria-controls="pf-menu"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'">
+        <i class="bi" [class.bi-x-lg]="menuOpen()" [class.bi-list]="!menuOpen()" aria-hidden="true"></i>
+      </button>
+    </div>
+  </nav>
+</header>

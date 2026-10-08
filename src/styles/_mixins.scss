@@ -1,0 +1,36 @@
+// ─── Mixins ──────────────────────────────────────────────────────────
+
+@mixin up($bp) {
+  @media (min-width: map-get($pf-breakpoints, $bp)) { @content; }
+}
+
+@mixin down($bp) {
+  @media (max-width: map-get($pf-breakpoints, $bp) - .02px) { @content; }
+}
+
+// Fluid type: clamp between a min and max with a viewport-driven middle
+@mixin fluid-type($min, $mid, $max) {
+  font-size: clamp(#{$min}, #{$mid}, #{$max});
+}
+
+@mixin eyebrow {
+  font-family: $pf-font-mono;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--pf-accent);
+}
+
+@mixin card-surface {
+  background: var(--pf-surface);
+  border: 1px solid var(--pf-line);
+  border-radius: $border-radius-lg;
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--pf-accent);
+    outline-offset: 3px;
+  }
+}

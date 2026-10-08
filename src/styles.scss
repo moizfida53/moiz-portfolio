@@ -1,0 +1,6 @@
+// Global entry: tokens → Bootstrap (from source) → colour modes → base.
+@import 'styles/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'styles/mixins';
+@import 'styles/theme';
+@import 'styles/base';

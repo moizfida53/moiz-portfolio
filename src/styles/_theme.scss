@@ -1,0 +1,44 @@
+// ─── Colour modes ────────────────────────────────────────────────────
+// Bootstrap 5.3 switches on [data-bs-theme]; ThemeService sets it on <html>.
+
+:root,
+[data-bs-theme='light'] {
+  --pf-ground:  #{$pf-ground};
+  --pf-surface: #{$pf-surface};
+  --pf-ink:     #{$pf-ink};
+  --pf-muted:   #{$pf-muted};
+  --pf-line:    #{$pf-line};
+  --pf-accent:  #{$pf-accent};
+  --pf-accent-strong: #{$pf-accent-d};
+  --pf-accent-soft: rgba(47, 91, 211, .08);
+  --pf-grid:    rgba(20, 20, 20, .045);
+  --pf-shadow:  0 1px 2px rgba(20, 20, 20, .04), 0 8px 24px rgba(20, 20, 20, .06);
+
+  --bs-body-bg: var(--pf-ground);
+  --bs-body-color: var(--pf-ink);
+  --bs-border-color: var(--pf-line);
+  --bs-link-color-rgb: 47, 91, 211;
+  --bs-link-hover-color-rgb: 30, 63, 158;
+  --bs-secondary-color: var(--pf-muted);
+}
+
+[data-bs-theme='dark'] {
+  --pf-ground:  #111316;
+  --pf-surface: #181b20;
+  --pf-ink:     #f0f0ec;
+  --pf-muted:   #a8aeb8;
+  --pf-line:    #2e333b;
+  --pf-accent:  #7ea2ff;
+  --pf-accent-strong: #a9c0ff;
+  --pf-accent-soft: rgba(126, 162, 255, .1);
+  --pf-grid:    rgba(255, 255, 255, .04);
+  --pf-shadow:  0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+
+  --bs-body-bg: var(--pf-ground);
+  --bs-body-color: var(--pf-ink);
+  --bs-border-color: var(--pf-line);
+  --bs-link-color-rgb: 126, 162, 255;
+  --bs-link-hover-color-rgb: 169, 192, 255;
+  --bs-secondary-color: var(--pf-muted);
+  color-scheme: dark;
+}

@@ -1,0 +1,81 @@
+// ─── Base & shared section styles ────────────────────────────────────
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  background: var(--pf-ground);
+  color: var(--pf-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+h1, h2, h3, h4 { letter-spacing: -.02em; color: var(--pf-ink); }
+p { color: var(--pf-muted); line-height: 1.7; }
+::selection { background: var(--pf-accent); color: #fff; }
+
+a, button { @include focus-ring; }
+
+.skip-link {
+  position: absolute; left: 1rem; top: -3rem; z-index: 2000;
+  padding: .5rem 1rem; background: var(--pf-accent); color: #fff; border-radius: $border-radius;
+  &:focus { top: 1rem; }
+}
+
+// Sections
+.pf-section {
+  padding-block: 4.5rem;
+  @include up(lg) { padding-block: 6.5rem; }
+
+  &--alt { background: var(--pf-surface); border-block: 1px solid var(--pf-line); }
+}
+
+.pf-eyebrow {
+  @include eyebrow;
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-bottom: .9rem;
+
+  &::before { content: ''; width: 1.75rem; height: 2px; background: currentColor; }
+}
+
+.pf-heading {
+  @include fluid-type(1.85rem, "1.3rem + 2vw", 2.75rem);
+  font-weight: 700; line-height: 1.1; margin-bottom: 1rem;
+}
+
+.pf-lead { font-size: 1.075rem; max-width: 40rem; }
+
+// Tech chip used across sections
+.pf-chip {
+  display: inline-flex; align-items: center;
+  padding: .3rem .7rem;
+  font-family: $pf-font-mono; font-size: .78rem; font-weight: 500;
+  color: var(--pf-ink);
+  border: 1px solid var(--pf-line); border-radius: .4rem;
+  background: var(--pf-ground);
+  white-space: nowrap;
+}
+
+// Buttons
+.btn { font-weight: 500; padding: .7rem 1.25rem; border-radius: .5rem; }
+.btn-pf {
+  background: var(--pf-ink); color: var(--pf-ground); border: 1px solid var(--pf-ink);
+  &:hover, &:focus-visible { background: var(--pf-accent); border-color: var(--pf-accent); color: #fff; }
+}
+.btn-pf-outline {
+  background: transparent; color: var(--pf-ink); border: 1px solid var(--pf-line);
+  &:hover, &:focus-visible { border-color: var(--pf-ink); color: var(--pf-ink); }
+}
+
+// Scroll reveal (RevealDirective toggles .is-visible)
+.reveal {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .6s ease, transform .6s ease;
+  &.is-visible { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { transition-duration: 0s !important; animation-duration: 0s !important; }
+}

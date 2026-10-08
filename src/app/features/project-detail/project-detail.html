@@ -1,0 +1,104 @@
+@if (project(); as p) {
+  <article class="pf-detail">
+    <header class="pf-detail__hero">
+      <div class="container">
+        <a class="pf-detail__back" routerLink="/" fragment="projects">
+          <i class="bi bi-arrow-left" aria-hidden="true"></i> All projects
+        </a>
+        <p class="pf-eyebrow">{{ p.kind }}</p>
+        <h1 class="pf-detail__title">{{ p.name }}</h1>
+        <p class="pf-detail__client"><i class="bi bi-building" aria-hidden="true"></i> {{ p.client }}</p>
+        <p class="pf-detail__summary">{{ p.summary }}</p>
+
+        <ul class="pf-detail__tags" aria-label="Categories">
+          @for (c of p.categories; track c) { <li>{{ c }}</li> }
+        </ul>
+      </div>
+    </header>
+
+    <section class="pf-detail__arch" aria-labelledby="arch-title">
+      <div class="container">
+        <h2 id="arch-title" class="pf-detail__label">How it fits together</h2>
+        <ol class="pf-flow">
+          @for (layer of p.architecture; track layer; let i = $index; let last = $last) {
+            <li class="pf-flow__node" [class.pf-flow__node--accent]="i === 1">
+              <span class="pf-flow__n">{{ (i + 1).toString().padStart(2, '0') }}</span>
+              <span class="pf-flow__text">{{ layer }}</span>
+            </li>
+            @if (!last) {
+              <li class="pf-flow__arrow" aria-hidden="true"><i class="bi bi-arrow-right"></i></li>
+            }
+          }
+        </ol>
+      </div>
+    </section>
+
+    <div class="container pf-detail__body">
+      <div class="row g-4 g-lg-5">
+        <div class="col-lg-8">
+          @for (section of p.sections; track section.title) {
+            <section class="pf-detail__section">
+              <h2>{{ section.title }}</h2>
+              <ul>
+                @for (point of section.points; track $index) {
+                  <li>{{ point }}</li>
+                }
+              </ul>
+            </section>
+          }
+          @if (p.note) {
+            <p class="pf-detail__note"><i class="bi bi-info-circle" aria-hidden="true"></i> {{ p.note }}</p>
+          }
+        </div>
+
+        <aside class="col-lg-4">
+          <div class="pf-side">
+            <h2 class="pf-detail__label">Tech stack</h2>
+            <ul class="pf-side__stack">
+              @for (tech of p.stack; track tech) { <li class="pf-chip">{{ tech }}</li> }
+            </ul>
+
+            <h2 class="pf-detail__label mt-4">Key highlights</h2>
+            <ul class="pf-side__highlights">
+              @for (h of p.highlights; track h) {
+                <li><i class="bi bi-check2" aria-hidden="true"></i> {{ h }}</li>
+              }
+            </ul>
+
+            <div class="pf-side__cta">
+              <p>Want to hear more about this project?</p>
+              <a class="btn btn-pf w-100" [href]="'mailto:' + profile.email + '?subject=' + p.name">
+                <i class="bi bi-envelope me-2" aria-hidden="true"></i>Ask me about it
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      @if (neighbours(); as n) {
+        <nav class="pf-pager" aria-label="More projects">
+          @if (n.prev) {
+            <a class="pf-pager__link" [routerLink]="['/projects', n.prev.slug]">
+              <span class="pf-pager__dir"><i class="bi bi-arrow-left" aria-hidden="true"></i> Previous</span>
+              <span class="pf-pager__name">{{ n.prev.name }}</span>
+            </a>
+          }
+          @if (n.next) {
+            <a class="pf-pager__link pf-pager__link--next" [routerLink]="['/projects', n.next.slug]">
+              <span class="pf-pager__dir">Next <i class="bi bi-arrow-right" aria-hidden="true"></i></span>
+              <span class="pf-pager__name">{{ n.next.name }}</span>
+            </a>
+          }
+        </nav>
+      }
+    </div>
+  </article>
+} @else {
+  <section class="pf-section">
+    <div class="container text-center">
+      <p class="pf-eyebrow justify-content-center">404</p>
+      <h1 class="pf-heading">That project doesn’t exist.</h1>
+      <a class="btn btn-pf mt-3" routerLink="/" fragment="projects">See all projects</a>
+    </div>
+  </section>
+}

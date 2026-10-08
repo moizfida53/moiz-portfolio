@@ -1,0 +1,65 @@
+<section id="projects" class="pf-section" aria-labelledby="projects-title">
+  <div class="container">
+    <div class="pf-projects__head" pfReveal>
+      <div>
+        <p class="pf-eyebrow">Selected work</p>
+        <h2 id="projects-title" class="pf-heading">Projects</h2>
+        <p class="pf-lead mb-0">Client and product work from BlueLink IT Solutions. Open any project for the full case study.</p>
+      </div>
+
+      <div class="pf-filters" role="group" aria-label="Filter projects by technology">
+        @for (f of data.filters; track f) {
+          <button
+            type="button"
+            class="pf-filters__btn"
+            [class.is-active]="data.activeFilter() === f"
+            [attr.aria-pressed]="data.activeFilter() === f"
+            (click)="select(f)">
+            {{ f }} <span class="pf-filters__count">{{ data.countFor(f) }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <p class="visually-hidden" aria-live="polite">Showing {{ data.visibleProjects().length }} projects</p>
+
+    <div class="row g-4">
+      @for (project of data.visibleProjects(); track project.slug; let i = $index) {
+        <div class="col-md-6 col-xl-6">
+          <article class="pf-card">
+            <div class="pf-card__top">
+              <span class="pf-card__index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+              <span class="pf-card__kind">{{ project.kind }}</span>
+            </div>
+
+            <h3 class="pf-card__title">
+              <a class="stretched-link" [routerLink]="['/projects', project.slug]">{{ project.name }}</a>
+            </h3>
+            <p class="pf-card__client"><i class="bi bi-building" aria-hidden="true"></i> {{ project.client }}</p>
+            <p class="pf-card__summary">{{ project.summary }}</p>
+
+            <ul class="pf-card__highlights">
+              @for (h of project.highlights; track h) {
+                <li><i class="bi bi-check2" aria-hidden="true"></i> {{ h }}</li>
+              }
+            </ul>
+
+            <div class="pf-card__footer">
+              <ul class="pf-card__stack" aria-label="Tech stack">
+                @for (tech of project.stack.slice(0, maxChips); track tech) {
+                  <li class="pf-chip">{{ tech }}</li>
+                }
+                @if (project.stack.length > maxChips) {
+                  <li class="pf-chip pf-chip--more">+{{ project.stack.length - maxChips }}</li>
+                }
+              </ul>
+              <span class="pf-card__cta" aria-hidden="true">Case study <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </article>
+        </div>
+      } @empty {
+        <p class="text-center">No projects match this filter.</p>
+      }
+    </div>
+  </div>
+</section>

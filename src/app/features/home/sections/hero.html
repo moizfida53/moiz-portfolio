@@ -1,0 +1,62 @@
+<section class="pf-hero" aria-labelledby="hero-title">
+  <div class="pf-hero__grid" aria-hidden="true"></div>
+
+  <div class="container position-relative">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-lg-7">
+        <p class="pf-eyebrow">{{ profile.title }} · {{ profile.location }}</p>
+        <h1 id="hero-title" class="pf-hero__title">{{ profile.name }}</h1>
+        <p class="pf-hero__tagline">{{ profile.tagline }}</p>
+
+        <p class="pf-hero__status">
+          <span class="pf-hero__dot" aria-hidden="true"></span>
+          {{ profile.openTo }}
+        </p>
+
+        <div class="pf-hero__ctas">
+          <a class="btn btn-pf" routerLink="/" fragment="projects">
+            View projects <i class="bi bi-arrow-down-short ms-1" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-pf-outline" routerLink="/" fragment="contact">Get in touch</a>
+          @if (profile.cvUrl) {
+            <a class="btn btn-pf-outline" [href]="profile.cvUrl" download>
+              <i class="bi bi-download me-1" aria-hidden="true"></i> Download CV
+            </a>
+          }
+        </div>
+
+        <ul class="pf-hero__social" aria-label="Profiles">
+          <li><a [href]="profile.linkedin" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          <li><a [href]="profile.github" target="_blank" rel="noopener"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a></li>
+          <li><a [href]="'mailto:' + profile.email"><i class="bi bi-envelope" aria-hidden="true"></i> {{ profile.email }}</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="pf-hero__visual">
+          <img class="pf-hero__photo" [src]="profile.photo" [alt]="'Portrait of ' + profile.name" width="196" height="196" />
+
+          <ol class="pf-stack" aria-label="The layers I build">
+            @for (layer of layers; track layer.n; let last = $last) {
+              <li class="pf-stack__layer" [class.pf-stack__layer--accent]="layer.n === '02'">
+                <span class="pf-stack__n">{{ layer.n }}</span>
+                <span class="pf-stack__label">{{ layer.label }}</span>
+                <span class="pf-stack__tech">{{ layer.tech }}</span>
+              </li>
+              @if (!last) { <li class="pf-stack__link" aria-hidden="true"></li> }
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <dl class="pf-facts">
+      @for (fact of facts; track fact.label) {
+        <div class="pf-facts__item">
+          <dt>{{ fact.value }}</dt>
+          <dd>{{ fact.label }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>
