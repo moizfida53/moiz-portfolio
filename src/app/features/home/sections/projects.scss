@@ -37,9 +37,8 @@
   @include card-surface;
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 
-  &:hover, &:focus-within {
-    border-color: var(--pf-accent); box-shadow: var(--pf-shadow); transform: translateY(-3px);
-    .pf-card__cta { color: var(--pf-accent); i { transform: translateX(4px); } }
+  &:hover {
+    border-color: var(--pf-accent);
   }
 
   &__top {
@@ -74,11 +73,6 @@
 
   &__stack { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
 
-  &__cta {
-    display: inline-flex; align-items: center; gap: .4rem;
-    font-weight: 600; font-size: .92rem; color: var(--pf-ink); white-space: nowrap;
-    i { transition: transform .2s ease; }
-  }
 }
 
 .pf-chip--more { color: var(--pf-muted); }

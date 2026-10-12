@@ -35,11 +35,6 @@ export interface Experience {
   points: string[];
 }
 
-export interface ProjectSection {
-  title: string;
-  points: string[];
-}
-
 export interface Project {
   slug: string;
   name: string;
@@ -47,12 +42,8 @@ export interface Project {
   kind: string;
   summary: string;
   categories: ProjectCategory[];
-  /** Request path through the system, drawn as a layer diagram on the detail page. */
-  architecture: string[];
   highlights: string[];
-  sections: ProjectSection[];
   stack: string[];
-  note?: string;
 }
 
 export interface Certification {

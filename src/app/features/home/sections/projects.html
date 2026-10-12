@@ -4,7 +4,7 @@
       <div>
         <p class="pf-eyebrow">Selected work</p>
         <h2 id="projects-title" class="pf-heading">Projects</h2>
-        <p class="pf-lead mb-0">Client and product work from BlueLink IT Solutions. Open any project for the full case study.</p>
+        <p class="pf-lead mb-0">A selection of client and product work from BlueLink IT Solutions. Code and internal details stay confidential — I’m happy to walk through my role in an interview.</p>
       </div>
 
       <div class="pf-filters" role="group" aria-label="Filter projects by technology">
@@ -33,7 +33,7 @@
             </div>
 
             <h3 class="pf-card__title">
-              <a class="stretched-link" [routerLink]="['/projects', project.slug]">{{ project.name }}</a>
+              {{ project.name }}
             </h3>
             <p class="pf-card__client"><i class="bi bi-building" aria-hidden="true"></i> {{ project.client }}</p>
             <p class="pf-card__summary">{{ project.summary }}</p>
@@ -53,7 +53,6 @@
                   <li class="pf-chip pf-chip--more">+{{ project.stack.length - maxChips }}</li>
                 }
               </ul>
-              <span class="pf-card__cta" aria-hidden="true">Case study <i class="bi bi-arrow-right"></i></span>
             </div>
           </article>
         </div>
